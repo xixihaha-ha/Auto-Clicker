@@ -1,6 +1,6 @@
 # multi_floater_autoclicker.py
 """
-多悬浮窗连点器（Python + tkinter + pyautogui）
+Auto-Clicker（Python + tkinter + pyautogui）
 热键：↑开始，↓停止，←添加按钮，→退出（窗口聚焦时）
 布局管理：支持多布局保存/加载/删除，文件位于 layouts/*.json
 录制功能：支持全局鼠标点击录制与回放，文件位于 records/*.json
@@ -134,7 +134,7 @@ class FloatingButton:
 class App:
     def __init__(self, root):
         self.root = root
-        root.title("多悬浮连点器 - 管理面板")
+        root.title("Auto-Clicker - 管理面板")
         root.geometry("1280x860")
         root.minsize(1100, 760)
         try:

@@ -1,52 +1,66 @@
-# 多悬浮窗连点器（Python）
+# Auto-Clicker
 
-## 功能
-- 创建多个可拖拽悬浮按钮窗口。
-- 按列表顺序依次点击每个按钮中心。
-- 可设置点击间隔和重复次数（0=无限）。
-- 可保存/加载多个布局：`layouts/*.json`。
+一个基于 `Python + tkinter + pyautogui` 的桌面自动点击工具，支持：
+- 悬浮按钮（可拖拽）
+- 按顺序循环点击
+- 布局保存/加载（`layouts/*.json`）
+- 鼠标点击录制与回放（`records/*.json`）
+- 全局热键（依赖 `pynput`）
 
 ## 运行环境
-- Windows
+- Windows 10/11（推荐）
 - Python 3.9+
 
-## 安装与运行（cmd.exe）
+## 快速开始（cmd.exe）
+在项目根目录执行：
+
 ```cmd
-cd /d "e:\Default location\Desktop\leran"
-python -m venv venv
-call venv\Scripts\activate.bat
+cd /d "你的项目路径\Auto-Clicker"
+python -m venv .venv
+call .venv\Scripts\activate.bat
 pip install -r requirements.txt
 python multi_floater_autoclicker.py
 ```
 
-## 操作说明
-- 点击“添加按钮”：在当前鼠标位置创建悬浮按钮。
-- 拖动按钮：按住按钮或边框左键拖动。
-- 在管理面板中调整顺序、间隔、重复次数。
-- `↑`：开始。
-- `↓`：停止。
-- `←`：添加按钮。
-- `→`：退出。
-- 也可点击“保存布局/加载布局/布局列表”管理多套布局。
+如果你的系统有 `py` 启动器，也可以用：
 
-## 注意
-- 在受保护程序/游戏中，模拟点击可能无效或有违规风险。
-- 仅在合法场景使用。
+```cmd
+py -3 -m venv .venv
+call .venv\Scripts\activate.bat
+pip install -r requirements.txt
+py multi_floater_autoclicker.py
+```
 
+## 基本操作
+- `↑`：开始自动点击
+- `↓`：停止（自动点击/录制回放/录制）
+- `←`：在鼠标当前位置新增一个悬浮按钮
+- `→`：退出程序
 
-说明：已支持全局方向键（需 `pynput`）。若未安装则自动回退为窗口内热键。
+界面按钮说明：
+- **添加按钮**：在当前鼠标位置创建按钮
+- **删除按钮**：删除列表中选中的按钮
+- **保存布局 / 加载布局**：管理 `layouts` 目录下的布局文件
+- **开始录制 / 停止录制 / 回放录制**：录制鼠标点击并按时间回放
 
+## 文件结构说明
+- `multi_floater_autoclicker.py`：主程序
+- `requirements.txt`：依赖列表
+- `layouts/`：布局文件目录
+- `records/`：录制文件目录
 
-## 布局管理（多套）
-- 使用“保存布局”可创建任意名称布局（保存到 `layouts/*.json`）。
-- 使用“快速切换”下拉框可一键加载布局。
-- 使用“删除布局”可删除下拉框当前选中布局。
-- 使用“刷新”可重新扫描 `layouts` 目录。
+程序会自动在项目目录下创建 `layouts` 和 `records` 文件夹（若不存在）。
 
+## 常见问题
+- **按热键没反应**：请确认程序在运行，且系统未拦截键盘钩子；如未安装 `pynput`，会自动降级为窗口焦点热键。
+- **点击位置偏移**：与系统 DPI 缩放相关，建议显示缩放使用 100% 或在同一缩放环境下录制/使用布局。
+- **杀软提示风险**：自动化点击工具可能被安全软件标记，请仅在合法、合规场景使用。
 
-## 录制功能
-- 点击“开始录制”后，会全局记录鼠标点击（左/右/中键）及时间间隔。
-- 点击“停止录制”结束采集。
-- 点击“回放录制”按原时间间隔重放点击。
-- 点击“保存录制/加载录制/删除录制”管理多套录制文件（`records/*.json`）。
-- 按 `↓` 会同时停止连点、录制回放和录制。
+## 分享给他人的建议
+把以下内容一起打包给对方：
+- `multi_floater_autoclicker.py`
+- `requirements.txt`
+- `README.md`
+- （可选）你的 `layouts/` 与 `records/` 数据文件
+
+对方按 README 的“快速开始”步骤即可运行。
